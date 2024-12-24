@@ -1,11 +1,26 @@
+import time
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://user:password@db:5432/ems'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://vihar:vihar@db:5432/ems'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+# Retry database connection
+connected = False
+for _ in range(5):
+    try:
+        db.create_all()
+        connected = True
+        break
+    except Exception as e:
+        print(f"Database connection failed: {e}. Retrying...")
+        time.sleep(5)
+
+if not connected:
+    raise Exception("Could not connect to the database after multiple attempts.")
 
 class Employee(db.Model):
     id = db.Column(db.Integer, primary_key=True)
