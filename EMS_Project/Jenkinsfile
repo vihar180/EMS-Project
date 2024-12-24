@@ -16,10 +16,5 @@ pipeline {
                 sh 'curl -X GET http://localhost:5000/employees'
             }
         }
-        stage('Clean Up') {
-            steps {
-                sh 'docker-compose down'
-            }
-        }
     }
 }
