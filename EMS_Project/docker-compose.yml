@@ -18,7 +18,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: employees
     ports:
-      - "3307:3306"
+      - "3308:3306"
 
   kong:
     image: kong
@@ -26,6 +26,6 @@ services:
       KONG_DATABASE: "off"
       KONG_DECLARATIVE_CONFIG: /etc/kong/kong.yml
     ports:
-      - "8001:8000"
+      - "8005:8000"
     volumes:
       - ./api/kong.yml:/etc/kong/kong.yml
