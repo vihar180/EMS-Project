@@ -58,7 +58,7 @@ def login():
         cursor.close()
         connection.close()
         if result:
-            return jsonify({"message": f"Welcome, {result[0]}!"}), 200
+            return jsonify({"message": f"Welcome, {result[0]}!", "redirect": "home.html"}), 200
         else:
             return jsonify({"message": "Invalid Employee ID or Password."}), 401
     except Exception as e:
@@ -66,4 +66,3 @@ def login():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-
