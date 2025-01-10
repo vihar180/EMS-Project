@@ -25,17 +25,21 @@
         document.getElementById('register-form').onsubmit = async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
-            const response = await fetch('http://localhost:5000/register', {
+            const response = await fetch('http://13.233.145.47:5000/register', {
                 method: 'POST',
                 body: formData,
             });
             const result = await response.json();
             if (response.ok) {
-                document.getElementById('registration-result').innerHTML = `<p>Registration successful! Your Employee ID is <strong>${result.employee_id}</strong>. Please click <a href='index.html'>here</a> to go to the login page.</p>`;
+                document.getElementById('registration-result').innerHTML = `
+                    <p>Registration successful! Your Employee ID is <strong>${result.employee_id}</strong>.
+                    Please click <a href='index.html'>here</a> to go to the login page.</p>`;
             } else {
-                document.getElementById('registration-result').innerHTML = `<p style="color: red;">${result.message}</p>`;
+                document.getElementById('registration-result').innerHTML = `
+                    <p style="color: red;">${result.message}</p>`;
             }
         };
     </script>
 </body>
 </html>
+

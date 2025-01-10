@@ -7,7 +7,7 @@ CORS(app)  # Enable CORS for all routes
 
 def get_db_connection():
     return mysql.connector.connect(
-        host="database",
+        host="13.233.145.47",
         user="root",
         password="root",
         database="employees"

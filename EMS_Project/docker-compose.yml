@@ -3,6 +3,8 @@ services:
     build: ./frontend
     ports:
       - "8085:80"
+    networks:
+      - ems-network
 
   backend:
     build: ./backend
@@ -10,6 +12,8 @@ services:
       - "5000:5000"
     depends_on:
       - database
+    networks:
+      - ems-network
 
   database:
     image: mysql:5.7
@@ -21,6 +25,12 @@ services:
     volumes:
       - db_data:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - ems-network
+
+networks:
+  ems-network:
+    driver: bridge
 
 volumes:
   db_data:
