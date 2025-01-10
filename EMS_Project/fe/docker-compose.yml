@@ -4,6 +4,6 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./frontend:/usr/share/nginx/html
+      - .:/usr/share/nginx/html
     container_name: fe-container
     restart: unless-stopped
