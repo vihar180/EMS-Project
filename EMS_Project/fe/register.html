@@ -25,7 +25,7 @@
         document.getElementById('register-form').onsubmit = async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
-            const response = await fetch('http://172.31.1.180:5000/register', {
+            const response = await fetch('http://internal-ems-alb-773265577.ap-south-1.elb.amazonaws.com:5000/register', {
                 method: 'POST',
                 body: formData,
             });
