@@ -7,7 +7,7 @@ CORS(app)
 
 def get_db_connection():
     return mysql.connector.connect(
-        host="<DB_Private_IP>",
+        host="172.31.2.124",  # Change to your actual DB private IP
         user="root",
         password="root",
         database="employees"
@@ -59,6 +59,20 @@ def login():
     finally:
         cursor.close()
         connection.close()
+
+# ✅ ADDING HEALTH CHECK ENDPOINT
+@app.route('/health', methods=['GET'])
+def health_check():
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor()
+        cursor.execute("SELECT 1")  # Simple DB check
+        cursor.fetchone()  # ✅ Fetch the result to avoid "Unread result found"
+        cursor.close()
+        connection.close()
+        return "OK", 200
+    except Exception as e:
+        return jsonify({"message": "Database connection failed", "error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
