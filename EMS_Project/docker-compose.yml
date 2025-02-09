@@ -1,12 +1,12 @@
 services:
   frontend:
-    build: frontend:latest
+    image: frontend:latest
     ports:
       - "8085:80"
     container_name: "frontend"
 
   backend:
-    build: backend:latest
+    image: backend:latest
     ports:
       - "5000:5000"
     depends_on:
