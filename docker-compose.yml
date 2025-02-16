@@ -4,7 +4,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      DB_HOST: 172.31.2.124
+      DB_HOST: 172.31.3.138
       DB_USER: root
       DB_PASSWORD: root
       DB_NAME: employees

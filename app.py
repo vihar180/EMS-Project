@@ -7,7 +7,7 @@ CORS(app)
 
 def get_db_connection():
     return mysql.connector.connect(
-        host="172.31.2.124",  # Change to your actual DB private IP
+        host="172.31.3.138",  # Change to your actual DB private IP
         user="root",
         password="root",
         database="employees"
